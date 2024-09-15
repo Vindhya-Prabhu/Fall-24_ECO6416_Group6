@@ -1520,12 +1520,21 @@ to use terms discussed in class such as bimodal, skewed left, etc.</p>
 ##Center
 
 ###Mean
+
+#Age is bimodal, skewed left; BMI is multimodal and Children doesn&#39;t contain any mode. Mean and Median for BMI are the closest, 
 mean(InsuranceData$Age)</code></pre>
 <pre><code>## [1] 39.13</code></pre>
 <pre class="r"><code>mean(InsuranceData$BMI)</code></pre>
 <pre><code>## [1] 31.5419</code></pre>
 <pre class="r"><code>mean(InsuranceData$Children)</code></pre>
 <pre><code>## [1] 1.11</code></pre>
+<pre class="r"><code>###Median
+median(InsuranceData$Age)</code></pre>
+<pre><code>## [1] 38</code></pre>
+<pre class="r"><code>median(InsuranceData$BMI)</code></pre>
+<pre><code>## [1] 31.4725</code></pre>
+<pre class="r"><code>median(InsuranceData$Children)</code></pre>
+<pre><code>## [1] 1</code></pre>
 <pre class="r"><code>###Modes
 
 getModes &lt;- function(x) {
