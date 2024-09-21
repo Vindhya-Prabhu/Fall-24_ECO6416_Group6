@@ -128,6 +128,9 @@ Generate a regression equation in the following form:
 $$Charges = \beta_{0}+\beta_{1}*Age+\beta_{2}*BMI+\beta_{3}*Children$$
 
 ```{r q3}
+model <- lm(Charges ~ InsuranceData$Age +  + children, data = InsuranceData)
+
+Summary(model)
 
 ```
 
