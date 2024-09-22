@@ -129,7 +129,7 @@ $$Charges = \beta_{0}+\beta_{1}*Age+\beta_{2}*BMI+\beta_{3}*Children$$
 
 ```{r q3}
 
-model <- lm(Charges ~ InsuranceData$Age + InsuranceData$BMI + InsuranceData$Children, data = InsuranceData)
+model <- lm(Charges ~ Age + BMI + Children, data = InsuranceData)
 
 summary(model)
 
