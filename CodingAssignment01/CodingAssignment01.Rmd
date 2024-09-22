@@ -118,9 +118,12 @@ summary(InsuranceData$Children)
 Perform bivariate analyses on the quantitative variables (direction, strength and form). Describe the linear association between all variables. 
 
 ```{r q2}
-cor(InsuranceData)model <-lm(Insurance premium ~ Age+ BMI + Children,data = InsuranceData)
+cor(InsuranceData)
+corrplot(cor(InsuranceData)
 ScatterplotMatrix(InsuranceData)
+cor(InsuranceData)model <-lm(Insurance premium ~ Age+ BMI + Children,data = InsuranceData)
 Summary(model)
+
 # Question 3
 Generate a regression equation in the following form:
 
