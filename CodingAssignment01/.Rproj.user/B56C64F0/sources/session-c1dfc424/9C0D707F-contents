@@ -129,9 +129,15 @@ $$Charges = \beta_{0}+\beta_{1}*Age+\beta_{2}*BMI+\beta_{3}*Children$$
 
 ```{r q3}
 
+model <- lm(Charges ~ Age + BMI + Children, data = InsuranceData)
+
+summary(model)
+
 ```
 
 also write out the regression cleanly in this document.
+
+**The regression equation written clearly: Charges = -12798.79 + 186.99(Age) + 625.41(BMI) - 101.33(Children)**
 
 # Question 4
 
@@ -139,5 +145,9 @@ An eager insurance representative comes back with a potential client. The client
 
 
 ```{r q4}
+newPrediction <- data.frame(Age = 40, 
+                         BMI = 30, 
+                         Children = 1)
 
+predict(model ,newdata = newPrediction, interval = "confidence", level = 0.95)
 ```
