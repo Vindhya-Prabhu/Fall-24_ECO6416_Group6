@@ -15,6 +15,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r packages}
 library(readr)
+library(corrplot)
+library(car)
 
 ```
 
@@ -50,7 +52,6 @@ InsuranceData <- read_csv("C:/UserData/z002r7kt/OneDrive - Siemens AG/Reference 
 Perform univariate analyses on the quantitative variables (center, shape, spread). Include descriptive statistics, and histograms. Be sure to use terms discussed in class such as bimodal, skewed left, etc.
 
 ```{r q1}
-
 ##Modes
 
 getModes <- function(x) {
@@ -80,9 +81,8 @@ summary(InsuranceData$Children)
 hist(InsuranceData$Age)
 hist(InsuranceData$BMI)
 hist(InsuranceData$Children)
-
-
 ```
+
 
 ### **Uni-variate Analysis:**
 
@@ -97,28 +97,27 @@ hist(InsuranceData$Children)
 Perform bivariate analyses on the quantitative variables (direction, strength and form). Describe the linear association between all variables. 
 
 ```{r q2}
-cor(InsuranceData)
-corrplot(cor(InsuranceData)
-ScatterplotMatrix(InsuranceData)
-model <-lm(Insurance premium ~ Age+ BMI + Children, data = InsuranceData)
-Summary(model)
+cor(InsuranceData[c("Charges","Age", "BMI", "Children")])
+corrplot(cor(InsuranceData[c("Charges","Age", "BMI", "Children")]))
+scatterplotMatrix(InsuranceData[c("Charges","Age", "BMI", "Children")])
+```
+### **Uni-variate Analysis:**
+
+- The variable BMI has strong positive liner, Age has moderate positive linear and Children has weak positive linear correlation with the variable Charges.
+
+*****
 
 # Question 3
-Generate a regression equation in the following form:
+#Generate a regression equation in the following form:
 
 $$Charges = \beta_{0}+\beta_{1}*Age+\beta_{2}*BMI+\beta_{3}*Children$$
 
 ```{r q3}
-model <- lm(Charges ~ Age + BMI + Children, data = InsuranceData)
 
-<<<<<<< HEAD
-summary(model)
-=======
 model <- lm(Charges ~ Age + BMI + Children, data = InsuranceData)
 
 summary(model)
 
->>>>>>> 5afa7c2805c1f5167b30eb98e6097b8452186c4d
 ```
 
 also write out the regression cleanly in this document.
@@ -136,8 +135,4 @@ newPrediction <- data.frame(Age = 40,
                          Children = 1)
 
 predict(model ,newdata = newPrediction, interval = "confidence", level = 0.95)
-<<<<<<< HEAD
 ```
-=======
-```
->>>>>>> 5afa7c2805c1f5167b30eb98e6097b8452186c4d
