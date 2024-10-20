@@ -99,5 +99,15 @@ Compare the model from question 1, to a model that does not include the group of
 ```{r q4}
 
 ```
+cities_charges <- charges[,-(1:3)] # drops first 3 columns
+
+model_charges <- lm(cities ~. , data = reduced_charges)
+
+summary(model_reduced)
+
+anova(model_charges, model_full) 
+
+
+
 
 
