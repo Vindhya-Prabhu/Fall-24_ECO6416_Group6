@@ -2,7 +2,7 @@
 "0","model_full <- lm(Charges ~ Age + BMI + Children + Female + Smoker, data = InsuranceData)"
 "0",""
 "0",""
-"0","model_cities <- lm(Charges ~ Age + BMI + Children + Female + Smoker+WinterSprings+WinterPark+Oviedo, , data = InsuranceData)"
+"0","model_cities <- lm(Charges ~ Age + BMI + Children + Female + Smoker+WinterSprings+WinterPark+Oviedo, data = InsuranceData)"
 "0",""
 "0","summary(model_cities)"
 "1","

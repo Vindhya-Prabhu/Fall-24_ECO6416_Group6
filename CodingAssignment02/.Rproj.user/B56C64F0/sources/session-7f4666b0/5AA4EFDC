@@ -3,7 +3,7 @@
     "path": "C:/UserData/z002r7kt/OneDrive - Siemens AG/Reference Documents/Learnings/Fall-24_ECO6416_Group6/CodingAssignment02/CodingAssignment2.Rmd",
     "project_path": "CodingAssignment2.Rmd",
     "type": "r_markdown",
-    "hash": "0",
+    "hash": "1746663516",
     "contents": "",
     "dirty": false,
     "created": 1729371127457.0,
@@ -12,16 +12,16 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "7,19",
-        "scrollLine": "0",
+        "cursorPosition": "67,304",
+        "scrollLine": "50",
         "last_setup_crc32": "7f4666b01ca7c969"
     },
     "folds": "",
-    "lastKnownWriteTime": 1729467998,
+    "lastKnownWriteTime": 1729468609,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1729467998224,
+    "last_content_update": 1729468609859,
     "read_only": false,
     "read_only_alternatives": []
 }

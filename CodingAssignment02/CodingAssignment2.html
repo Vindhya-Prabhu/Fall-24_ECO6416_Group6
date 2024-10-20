@@ -1562,17 +1562,17 @@ tested significant.</p>
 <p>With the variables Age, BMI, Smoker and WinterPark testing
 significant at the 95% level, we can say that the variables have a
 statistically significant effect on the dependent variable, the Total
-medical expenses for a particular insurance plan (in dollars). The
-coefficients for the statistically significant variables show the change
-in Total medical expenses for a particular insurance plan (in dollars)
-for every change in their respective 1 unit. For example, the total
-medical expenses for a particular insurance plan increases by ~$282 for
-every 1 year older the primary beneficiary is. Additionally, the
-positive and negative signs that proceed each coefficient indicate the
-direct and indirect relationship that each variable has with the
-dependent variable. For example, looking at the Age variable again, it
-has a positive sign before the coefficient, indicating a direct
-relationship.</p>
+medical expenses for a particular insurance plan (in dollars).</p>
+<p>The coefficients for the statistically significant variables show the
+change in Total medical expenses for a particular insurance plan (in
+dollars) for every change in their respective 1 unit. For example, the
+total medical expenses for a particular insurance plan increases by
+~$282 for every 1 year older the primary beneficiary is.</p>
+<p>Additionally, the positive and negative signs that proceed each
+coefficient indicate the direct and indirect relationship that each
+variable has with the dependent variable. For example, looking at the
+Age variable again, it has a positive sign before the coefficient,
+indicating a direct relationship.</p>
 <hr />
 </div>
 <div id="question-3" class="section level2">
@@ -1598,11 +1598,11 @@ as well)</p>
                       WinterPark=0,
                       Oviedo=0)
 
-predict(model, newdata = Charges,interval = &quot;confidence&quot;)</code></pre>
+predict(model, newdata = Charges,interval = &quot;confidence&quot;,level = 0.95)</code></pre>
 <pre><code>##        fit     lwr      upr
 ## 1 4770.656 2641.94 6899.373</code></pre>
 <p>Predicted amount of medical expense associated with this policy is
-4122, give or take 1737.</p>
+4112, give or take 1737.</p>
 <hr />
 </div>
 <div id="question-4" class="section level2">
@@ -1614,7 +1614,7 @@ significance of the dummies as a group). Use <span class="math inline">\(\alpha 
 <pre class="r"><code>model_full &lt;- lm(Charges ~ Age + BMI + Children + Female + Smoker, data = InsuranceData)
 
 
-model_cities &lt;- lm(Charges ~ Age + BMI + Children + Female + Smoker+WinterSprings+WinterPark+Oviedo, , data = InsuranceData)
+model_cities &lt;- lm(Charges ~ Age + BMI + Children + Female + Smoker+WinterSprings+WinterPark+Oviedo, data = InsuranceData)
 
 summary(model_cities)</code></pre>
 <pre><code>## 
