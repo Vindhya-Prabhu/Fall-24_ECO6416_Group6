@@ -1559,6 +1559,21 @@ significant in a two-tailed test with <span class="math inline">\(\alpha
 <h2>Question 2</h2>
 <p>Interpret the coefficients of all the independent variables that
 tested significant.</p>
+<p>With the variables Age, BMI, Smoker and WinterPark testing
+significant at the 95% level, we can say that the variables have a
+statistically significant effect on the dependent variable, the Total
+medical expenses for a particular insurance plan (in dollars). The
+coefficients for the statistically significant variables show the change
+in Total medical expenses for a particular insurance plan (in dollars)
+for every change in their respective 1 unit. For example, the total
+medical expenses for a particular insurance plan increases by ~$282 for
+every 1 year older the primary beneficiary is. Additionally, the
+positive and negative signs that proceed each coefficient indicate the
+direct and indirect relationship that each variable has with the
+dependent variable. For example, looking at the Age variable again, it
+has a positive sign before the coefficient, indicating a direct
+relationship.</p>
+<hr />
 </div>
 <div id="question-3" class="section level2">
 <h2>Question 3</h2>
@@ -1574,6 +1589,21 @@ tested significant.</p>
 <p>Using the regression equation above, predict the amount of medical
 expenses associated with this policy. (Provide a 95% confidence interval
 as well)</p>
+<pre class="r"><code>Charges &lt;- data.frame(Age=35,
+                      BMI=26,
+                      Children=1,
+                      Female=1,
+                      Smoker=0,
+                      WinterSprings=0,
+                      WinterPark=0,
+                      Oviedo=0)
+
+predict(model, newdata = Charges,interval = &quot;confidence&quot;)</code></pre>
+<pre><code>##        fit     lwr      upr
+## 1 4770.656 2641.94 6899.373</code></pre>
+<p>Predicted amount of medical expense associated with this policy is
+4122, give or take 1737.</p>
+<hr />
 </div>
 <div id="question-4" class="section level2">
 <h2>Question 4</h2>
@@ -1581,6 +1611,52 @@ as well)</p>
 the group of city dummies. Does including the cities reduce the SSE by a
 statistically significant amount? (check the partial F-test for
 significance of the dummies as a group). Use <span class="math inline">\(\alpha = 0.05\)</span></p>
+<pre class="r"><code>model_full &lt;- lm(Charges ~ Age + BMI + Children + Female + Smoker, data = InsuranceData)
+
+
+model_cities &lt;- lm(Charges ~ Age + BMI + Children + Female + Smoker+WinterSprings+WinterPark+Oviedo, , data = InsuranceData)
+
+summary(model_cities)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = Charges ~ Age + BMI + Children + Female + Smoker + 
+##     WinterSprings + WinterPark + Oviedo, data = InsuranceData)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -13834.6  -1793.2    109.8   2178.1  14759.7 
+## 
+## Coefficients:
+##                Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   -13716.00    2905.80  -4.720 8.50e-06 ***
+## Age              282.33      33.59   8.406 5.50e-13 ***
+## BMI              382.48      84.59   4.522 1.84e-05 ***
+## Children        -152.02     397.75  -0.382    0.703    
+## Female         -1187.23     967.83  -1.227    0.223    
+## Smoker         27885.82    1161.51  24.008  &lt; 2e-16 ***
+## WinterSprings   -515.44    1462.06  -0.353    0.725    
+## WinterPark     -2003.37    1348.54  -1.486    0.141    
+## Oviedo         -1111.73    1321.08  -0.842    0.402    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 4751 on 91 degrees of freedom
+## Multiple R-squared:  0.8814, Adjusted R-squared:  0.8709 
+## F-statistic:  84.5 on 8 and 91 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>anova(model_full, model_cities)</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Model 1: Charges ~ Age + BMI + Children + Female + Smoker
+## Model 2: Charges ~ Age + BMI + Children + Female + Smoker + WinterSprings + 
+##     WinterPark + Oviedo
+##   Res.Df        RSS Df Sum of Sq      F Pr(&gt;F)
+## 1     94 2106792717                           
+## 2     91 2053826578  3  52966140 0.7823 0.5069</code></pre>
+<p>Including the cities dummy variables did not reduce the SSE by a
+statistically significant amount, and independently, none of the cities
+tested statistically significant at <span class="math inline">\(\alpha =
+0.05\)</span>.</p>
+<hr />
 </div>
 
 

@@ -49,7 +49,7 @@ summary(model)
   
 Regression equation written out clearly:  
 
-Charges = -13716 + 282.33(Age) + 382.48(BMI) -152.02(Children) -1187.23(Female) + 27885.82(Smoker) -515.44(WinterSprings) -2003.37(WinterPark) -1111.73(Oviedo)     
+Charges = -13716 + 282.33(Age) + 382.48(BMI) -152.02(Children) -1187.23(Female) + 27885.82(Smoker) -515.44(WinterSprings) -2003.37(WinterPark) -1111.73(Oviedo)       
   
 ***  
 Which independent variables test significant in a two-tailed test? Use $\alpha = 0.2$
@@ -61,7 +61,9 @@ Independent variables Age, BMI, Smoker and WinterPark test significant in a two-
 
 Interpret the coefficients of all the independent variables that tested significant.
 
+With the variables Age, BMI, Smoker and WinterPark testing significant at the 95% level, we can say that the variables have a statistically significant effect on the dependent variable, the Total medical expenses for a particular insurance plan (in dollars). The coefficients for the statistically significant variables show the change in Total medical expenses for a particular insurance plan (in dollars) for every change in their respective 1 unit. For example, the total medical expenses for a particular insurance plan increases by ~$282 for every 1 year older the primary beneficiary is. Additionally, the positive and negative signs that proceed each coefficient indicate the direct and indirect relationship that each variable has with the dependent variable. For example, looking at the Age variable again, it has a positive sign before the coefficient, indicating a direct relationship.  
 
+***  
 ## Question 3
 
 The insurance agent returns with another client:
@@ -77,14 +79,44 @@ Using the regression equation above, predict the amount of medical expenses asso
 
 ```{r q3}
 
-```
+Charges <- data.frame(Age=35,
+                      BMI=26,
+                      Children=1,
+                      Female=1,
+                      Smoker=0,
+                      WinterSprings=0,
+                      WinterPark=0,
+                      Oviedo=0)
 
+predict(model, newdata = Charges,interval = "confidence")
+
+```
+Predicted amount of medical expense associated with this policy is 4122, give or take 1737.    
+
+***  
 ## Question 4
 
 Compare the model from question 1, to a model that does not include the group of city dummies. Does including the cities reduce the SSE by a statistically significant amount? (check the partial F-test for significance of the dummies as a group). Use $\alpha = 0.05$
 
 ```{r q4}
 
+model_full <- lm(Charges ~ Age + BMI + Children + Female + Smoker, data = InsuranceData)
+
+
+model_cities <- lm(Charges ~ Age + BMI + Children + Female + Smoker+WinterSprings+WinterPark+Oviedo, , data = InsuranceData)
+
+summary(model_cities)
+
+anova(model_full, model_cities)
+
 ```
+Including the cities dummy variables did not reduce the SSE by a statistically significant amount, and independently, none of the cities tested statistically significant at $\alpha = 0.05$.  
+
+***
+
+
+
+
+
 
 
