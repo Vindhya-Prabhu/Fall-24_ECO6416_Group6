@@ -61,6 +61,7 @@ Independent variables Age, BMI, Smoker and WinterPark test significant in a two-
 
 Interpret the coefficients of all the independent variables that tested significant.
 
+The independent variables Age, BMI, Smoker and WinterPark test significant in a two-tailed test with $\alpha = 0.2$ This means that Age, BMI, Smoker and WinterPark variables have a statistically significant effect on the dependent variable, Charges, while the variables Children, Gender, WinterSprings and Oviedo are not significant. The coefficients for the statistically significant variables show the change in Total medical expenses for a particular insurance plan (in dollars) for every change in their respective 1 unit. For example, the total medical expenses for a particular insurance plan increases by ~$282 for every 1 year older the primary beneficiary is. 
 
 ## Question 3
 
@@ -76,6 +77,18 @@ The insurance agent returns with another client:
 Using the regression equation above, predict the amount of medical expenses associated with this policy. (Provide a 95% confidence interval as well)
 
 ```{r q3}
+
+Charges <- data.frame(Age=35,
+                      BMI=26,
+                      Children=1,
+                      Female=1,
+                      Smoker=0,
+                      WinterSprings=0,
+                      WinterPark=0,
+                      Oviedo=0)
+
+predict(model, newdata = Charges,interval = "prediction")
+predict(model, newdata = Charges,interval = "confidence")
 
 ```
 
