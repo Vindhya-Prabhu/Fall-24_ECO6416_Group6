@@ -40,8 +40,20 @@ Randomly select 30 observations from the sample and exclude from all modeling. P
 
 ```{r q1}
 #
-```
+```randomRowNumbers <- sample(seq_len(nrow(insurance)), size = 30)
+ Insurance$lnSalePrice <- log(insurance$chargers) 
+Insurance$charges <- log(Insurance$claims)
+Insurance$chargesSquared <- Insurance$claims^2
 
+train <- Insurance[-randomRowNumbers,]
+test <- Insurance[randomRowNumbers,]
+train %>% 
+  
+tbl_summary(statistic = list(all_continuous() ~ c("{mean} ({sd})",
+                                                    "{median} ({p25}, {p75})",
+                                                    "{min}, {max}"),
+                              all_categorical() ~ "{n} / {N} ({p}%)"),
+              type = all_continuous() ~ "continuous2"
 
 ## Question 2
 
