@@ -41,9 +41,9 @@ Randomly select 30 observations from the sample and exclude from all modeling. P
 ```{r q1}
 #
 ```randomRowNumbers <- sample(seq_len(nrow(insurance)), size = 30)
- Insurance$lnSalePrice <- log(insurance$chargers) 
-Insurance$charges <- log(Insurance$claims)
-Insurance$chargesSquared <- Insurance$claims^2
+ Insurance$lnCustomer <- log(insurance$customer) 
+Insurance$age <- log(Insurance$age)
+Insurance$ageSquared <- Insurance$age^2
 
 train <- Insurance[-randomRowNumbers,]
 test <- Insurance[randomRowNumbers,]
@@ -61,7 +61,8 @@ Provide the correlation between all quantitative variables
 
 ```{r}
 #
-```
+```cor(train %>% select(lnCustomer,lnage,ageSquared,age,BMI)) %>% 
+  corrplot(method = "number", type = 'lower')
 
 
 ## Question 3
