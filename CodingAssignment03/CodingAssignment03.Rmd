@@ -1,8 +1,10 @@
 ---
 title: "Coding Assignment 3"
-author: "Team N"
+author: "Team 6"
 date: "Due: 2024-12-07 23:59"
-output: 
+output:
+  pdf_document:
+    toc: true
   html_document:
     toc: true
     toc_float: true
@@ -11,6 +13,11 @@ output:
 ```{r setup, include=FALSE}
 #Put any packages you need here
 knitr::opts_chunk$set(echo = TRUE)
+library(readxl)
+library(car)
+library(gt)
+library(gtsummary)
+library(corrplot)
 ```
 
 A Florida health insurance company wants to predict annual claims for individual clients. The company pulls a random sample of 100 customers. The owner wishes to charge an actuarially fair premium to ensure a normal rate of return. The owner collects all of their current customer’s health care expenses from the last year and compares them with what is known about each customer’s plan. 
@@ -29,45 +36,45 @@ Answer the following questions using complete sentences and attach all output, p
 
 
 ```{r dataset}
-# Bring in the dataset here.
+Claims <- read_xlsx("/Users/megibejleri/Documents/GitHub/Insurance_Data_Group6.xlsx")
+
+gt(head(Claims))
 ```
-
-
 
 ## Question 1
 
 Randomly select 30 observations from the sample and exclude from all modeling. Provide the summary statistics (min, max, std, mean, median) of the quantitative variables for the 70 observations.
 
 ```{r q1}
-#
-```randomRowNumbers <- sample(seq_len(nrow(insurance)), size = 30)
- Insurance$lnCustomer <- log(insurance$customer) 
-Insurance$age <- log(Insurance$age)
-Insurance$ageSquared <- Insurance$age^2
 
-train <- Insurance[-randomRowNumbers,]
-test <- Insurance[randomRowNumbers,]
-train %>% 
-  
-tbl_summary(statistic = list(all_continuous() ~ c("{mean} ({sd})",
-                                                    "{median} ({p25}, {p75})",
-                                                    "{min}, {max}"),
-                              all_categorical() ~ "{n} / {N} ({p}%)"),
-              type = all_continuous() ~ "continuous2"
+set.seed(123456)
+index <- sample(seq_len(nrow(Claims)), size = 30)
+
+train <- Claims[-index,]
+test <- Claims[index,]
+
+summary(train)
+
+```
 
 ## Question 2
 
 Provide the correlation between all quantitative variables
 
-```{r}
-#
-```cor(train %>% select(lnCustomer,lnage,ageSquared,age,BMI)) %>% 
-  corrplot(method = "number", type = 'lower')
+```{r q2}
+
+corrplot(cor(Claims))
+         
+```
 
 
 ## Question 3
 
 Run a regression that includes all independent variables in the data table. Does the model above violate any of the Gauss-Markov assumptions? If so, what are they and what is the solution for correcting?
+
+```{r q3}
+#
+```
 
 
 ## Question 4
@@ -91,7 +98,7 @@ Use the 30 withheld observations and calculate the performance measures for your
 
 Provide interpretations of the coefficients, do the signs make sense? Perform marginal change analysis (thing 2) on the independent variables.
 
-```{r}
+```{r q6}
 #
 ```
 
@@ -108,7 +115,7 @@ An eager insurance representative comes back with five potential clients. Using 
 | 5        | 45  | 27  | 1      | 3        | 0      | Oviedo         |
 
 
-```{r}
+```{r q7}
 #
 ```
 
@@ -116,7 +123,15 @@ An eager insurance representative comes back with five potential clients. Using 
 
 The owner notices that some of the predictions are wider than others, explain why.
 
+```{r q8}
+#
+```
+
 ## Question 9 
 
 Are there any prediction problems that occur with the five potential clients? If so, explain.
+
+```{r q9}
+#
+```
 
