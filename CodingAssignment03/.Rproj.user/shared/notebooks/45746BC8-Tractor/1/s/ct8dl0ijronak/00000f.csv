@@ -1,0 +1,6 @@
+"0","library(readxl) # reading in excel file"
+"0","library(car) # for vif function"
+"0","library(plotly) # for interactive visualizations"
+"0","library(gt) # for better looking tables"
+"0","library(gtsummary) # for better summary statistics"
+"0",""

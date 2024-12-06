@@ -1,0 +1,3 @@
+"0",""
+"0","par(mfrow=c(2,2))"
+"0","plot(bad_model)"

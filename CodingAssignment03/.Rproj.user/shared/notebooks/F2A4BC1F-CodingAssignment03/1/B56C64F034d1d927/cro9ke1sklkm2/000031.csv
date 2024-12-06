@@ -1,0 +1,6 @@
+"0",""
+"0","#hist(train$Charges) #before"
+"0","#train$lnCharges <- log(train$Charges)"
+"0","#hist(train$lnCharges) #after"
+"0",""
+"0","#"

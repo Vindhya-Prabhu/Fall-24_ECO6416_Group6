@@ -1,0 +1,13 @@
+"0","cor(train %>% select(Charges, Age, BMI)) %>%"
+"0","  "
+"0",""
+"0","#cor(train %>% select(lnCustomer,lnage,ageSquared,age,BMI)) %>% "
+"0","#  corrplot(method = ""number"", type = 'lower')"
+"0","#"
+"2","Error: Incomplete expression: cor(train %>% select(Charges, Age, BMI)) %>%
+  
+
+#cor(train %>% select(lnCustomer,lnage,ageSquared,age,BMI)) %>% 
+#  corrplot(method = ""number"", type = 'lower')
+#
+"

@@ -1,0 +1,3 @@
+"0","tractor <- read_xlsx(""../Data/TractorRaw.xlsx"")"
+"0",""
+"0","gt(head(tractor)) # the gt function only makes it look nicer"

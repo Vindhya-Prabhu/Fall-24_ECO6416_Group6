@@ -1,0 +1,5 @@
+"0","set.seed(123457)"
+"0","index <- sample(seq_len(nrow(tractor)), size = 10)"
+"0",""
+"0","train <- tractor[-index,]"
+"0","test <- tractor[index,]"

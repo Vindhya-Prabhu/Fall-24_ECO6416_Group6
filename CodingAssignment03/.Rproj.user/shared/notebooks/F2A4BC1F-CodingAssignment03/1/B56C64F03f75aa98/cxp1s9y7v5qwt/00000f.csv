@@ -1,0 +1,5 @@
+"0",""
+"0","quantitative_data_train <- train %>% select_if(is.numeric())"
+"2","Error in train %>% select_if(is.numeric()) : 
+  could not find function ""%>%""
+"

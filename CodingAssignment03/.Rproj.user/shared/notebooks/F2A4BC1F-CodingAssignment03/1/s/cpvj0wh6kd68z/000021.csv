@@ -1,0 +1,33 @@
+"0",""
+"0","set.seed(123456)"
+"0","index <- sample(seq_len(nrow(Claims)), size = 30)"
+"0",""
+"0","train <- Claims[-index,]"
+"0","test <- Claims[index,]"
+"0",""
+"0","quant_train <- train %>%"
+"0","  select(Charges, Age, BMI)"
+"0",""
+"0","#summary(quant_train)"
+"0",""
+"0","train %>%"
+"0","  tbl_summary(statistic = list(all_continuous() ~ c(""{mean} ({sd})"","
+"0","                                                  ""{median} ({p25}, {p75})"","
+"0","                                                  ""{min}, {max}""),"
+"0","                            all_categorical() ~ ""{n} / {N} ({p}%)""),"
+"0","            type = all_continuous() ~ ""continuous2"""
+"0","  )"
+"1","[1m[33mError[39m in `dplyr::mutate()`:[22m
+[38;5;232m[36mℹ[38;5;232m In argument: `stat = list(...)`.[39m
+[1mCaused by error in `glue_data()`:[22m
+[33m![39m is.environment(.envir) is not TRUE
+Backtrace:
+[90m  1. [39mtrain %>% ...
+[90m 36. [39m[1mgtsummary[22m:::map(...)
+[90m 37. [39m[1mbase[22m::lapply(.x, .f, ...)
+[90m 38. [39m[1mgtsummary[22m (local) FUN(X[[i]], ...)
+[90m 39. [39m[1mglue[22m::glue(...)
+[90m 40. [39mglue::glue_data(...)
+[90m 41. [39m[1mbase[22m::stopifnot(is.environment(.envir))
+[90m 42. [39mbase::stop(simpleError(msg, call = if (p <- sys.parent(1L)) sys.call(p)))
+"

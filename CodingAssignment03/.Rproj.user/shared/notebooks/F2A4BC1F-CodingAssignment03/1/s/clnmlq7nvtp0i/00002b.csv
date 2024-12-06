@@ -1,0 +1,5 @@
+"0","  "
+"0",""
+"0","#cor(train %>% select(lnCustomer,lnage,ageSquared,age,BMI)) %>% "
+"0","#  corrplot(method = ""number"", type = 'lower')"
+"0","#"

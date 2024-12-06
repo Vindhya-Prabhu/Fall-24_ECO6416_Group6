@@ -1,0 +1,5 @@
+"0","cor(train %>% "
+"0","      select(Charges, Age, BMI))"
+"2","Error in train %>% select(Charges, Age, BMI) : 
+  could not find function ""%>%""
+"

@@ -1,0 +1,5 @@
+"0",""
+"0","train$lnSalePrice <- log(train$saleprice)"
+"0",""
+"0","hist(train$lnSalePrice) #after"
+"0",""
