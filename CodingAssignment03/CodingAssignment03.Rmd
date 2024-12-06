@@ -18,6 +18,7 @@ library(car)
 library(gt)
 library(gtsummary)
 library(corrplot)
+library(tinytex)
 ```
 
 A Florida health insurance company wants to predict annual claims for individual clients. The company pulls a random sample of 100 customers. The owner wishes to charge an actuarially fair premium to ensure a normal rate of return. The owner collects all of their current customer’s health care expenses from the last year and compares them with what is known about each customer’s plan. 
@@ -41,6 +42,8 @@ Claims <- read_xlsx("/Users/megibejleri/Documents/GitHub/Insurance_Data_Group6.x
 gt(head(Claims))
 ```
 
+
+
 ## Question 1
 
 Randomly select 30 observations from the sample and exclude from all modeling. Provide the summary statistics (min, max, std, mean, median) of the quantitative variables for the 70 observations.
@@ -53,7 +56,16 @@ index <- sample(seq_len(nrow(Claims)), size = 30)
 train <- Claims[-index,]
 test <- Claims[index,]
 
-summary(train)
+quant_train <- train %>%
+  select(Charges, Age, BMI)
+
+quant_train %>%
+tbl_summary(statistic = list(all_continuous() ~ c("{mean} ({sd})",
+"{median} ({p25}, {p75})",
+"{min}, {max}"),
+all_categorical() ~ "{n} / {N} ({p}%)"),
+type = all_continuous() ~ "continuous2"
+)
 
 ```
 
@@ -63,7 +75,7 @@ Provide the correlation between all quantitative variables
 
 ```{r q2}
 
-corrplot(cor(Claims))
+corrplot(cor(quant_train))
          
 ```
 
@@ -127,6 +139,13 @@ The owner notices that some of the predictions are wider than others, explain wh
 #
 ```
 
+## Question 9 
+
+Are there any prediction problems that occur with the five potential clients? If so, explain.
+
+```{r q9}
+#
+```
 ## Question 9 
 
 Are there any prediction problems that occur with the five potential clients? If so, explain.
