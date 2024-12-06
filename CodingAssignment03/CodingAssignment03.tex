@@ -1,0 +1,783 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{longtable}
+\usepackage{colortbl}
+\usepackage{array}
+\usepackage{anyfontsize}
+\usepackage{multirow}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Coding Assignment 3},
+  pdfauthor={Team 6},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Coding Assignment 3}
+\author{Team 6}
+\date{Due: 2024-12-07 23:59}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+A Florida health insurance company wants to predict annual claims for
+individual clients. The company pulls a random sample of 100 customers.
+The owner wishes to charge an actuarially fair premium to ensure a
+normal rate of return. The owner collects all of their current
+customer's health care expenses from the last year and compares them
+with what is known about each customer's plan.
+
+The data on the 100 customers in the sample is as follows:
+
+\begin{itemize}
+\tightlist
+\item
+  Charges: Total medical expenses for a particular insurance plan (in
+  dollars)
+\item
+  Age: Age of the primary beneficiary
+\item
+  BMI: Primary beneficiary's body mass index (kg/m2)
+\item
+  Female: Primary beneficiary's birth sex (0 = Male, 1 = Female)
+\item
+  Children: Number of children covered by health insurance plan
+  (includes other dependents as well)
+\item
+  Smoker: Indicator if primary beneficiary is a smoker (0 = non-smoker,
+  1 = smoker)
+\item
+  Cities: Dummy variables for each city with the default being Sanford
+\end{itemize}
+
+Answer the following questions using complete sentences and attach all
+output, plots, etc. within this report.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Bring in the dataset here.}
+
+\NormalTok{Claims }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"C:}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{UserData}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{z002r7kt}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{OneDrive {-} Siemens AG}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{Reference Documents}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{Learnings}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{Fall{-}24\_ECO6416\_Group6}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{Insurance\_Data\_Group6.csv"}\NormalTok{)}
+
+
+\FunctionTok{gt}\NormalTok{(}\FunctionTok{head}\NormalTok{(Claims))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}[!t]
+\fontsize{12.0pt}{14.4pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}rrrrrrrrr}
+\toprule
+Charges & Age & BMI & Female & Children & Smoker & WinterSprings & WinterPark & Oviedo \\ 
+\midrule\addlinespace[2.5pt]
+11244.377 & 53 & 26.410 & 0 & 2 & 0 & 1 & 0 & 0 \\ 
+1256.299 & 19 & 30.400 & 0 & 0 & 0 & 0 & 0 & 1 \\ 
+4746.344 & 35 & 27.100 & 0 & 1 & 0 & 0 & 0 & 1 \\ 
+11658.115 & 56 & 28.595 & 1 & 0 & 0 & 1 & 0 & 0 \\ 
+40273.645 & 41 & 35.750 & 0 & 1 & 1 & 0 & 1 & 0 \\ 
+14901.517 & 64 & 39.330 & 1 & 0 & 0 & 1 & 0 & 0 \\ 
+\bottomrule
+\end{tabular*}
+\end{table}
+
+\subsection{Question 1}\label{question-1}
+
+Randomly select 30 observations from the sample and exclude from all
+modeling. Provide the summary statistics (min, max, std, mean, median)
+of the quantitative variables for the 70 observations.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123456}\NormalTok{)}
+\NormalTok{index }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\FunctionTok{seq\_len}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(Claims)), }\AttributeTok{size =} \DecValTok{30}\NormalTok{)}
+
+\NormalTok{train }\OtherTok{\textless{}{-}}\NormalTok{ Claims[}\SpecialCharTok{{-}}\NormalTok{index,]}
+\NormalTok{test }\OtherTok{\textless{}{-}}\NormalTok{ Claims[index,]}
+
+\NormalTok{quant\_train }\OtherTok{\textless{}{-}}\NormalTok{ train }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(Charges, Age, BMI)}
+
+\CommentTok{\#quant\_train \%\textgreater{}\%}
+\CommentTok{\#tbl\_summary(statistic = list(all\_continuous() \textasciitilde{} c("\{mean\} (\{sd\})",}
+\CommentTok{\#"\{median\} (\{p25\}, \{p75\})",}
+\CommentTok{\#"\{min\}, \{max\}"),}
+\CommentTok{\#all\_categorical() \textasciitilde{} "\{n\} / \{N\} (\{p\}\%)"),}
+\CommentTok{\#type = all\_continuous() \textasciitilde{} "continuous2"}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Question 2}\label{question-2}
+
+Provide the correlation between all quantitative variables
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{corrplot}\NormalTok{(}\FunctionTok{cor}\NormalTok{(quant\_train))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{CodingAssignment03_files/figure-latex/q2-1.pdf}
+
+\subsection{Question 3}\label{question-3}
+
+Run a regression that includes all independent variables in the data
+table. Does the model above violate any of the Gauss-Markov assumptions?
+If so, what are they and what is the solution for correcting?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{original\_model }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(Charges }\SpecialCharTok{\textasciitilde{}}\NormalTok{. , }\AttributeTok{data =}\NormalTok{ train[,}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{9}\NormalTok{)])}
+\FunctionTok{summary}\NormalTok{(original\_model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = Charges ~ ., data = train[, c(1:9)])
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -11730.5  -2078.7    383.8   2225.9  14810.8 
+## 
+## Coefficients:
+##                Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)   -15952.99    3783.69  -4.216 8.36e-05 ***
+## Age              278.01      47.37   5.869 1.94e-07 ***
+## BMI              454.29     109.40   4.153 0.000104 ***
+## Female          -886.89    1280.58  -0.693 0.491208    
+## Children        -392.27     539.99  -0.726 0.470346    
+## Smoker         26982.23    1442.33  18.707  < 2e-16 ***
+## WinterSprings   -101.07    1839.82  -0.055 0.956370    
+## WinterPark     -2513.45    1810.95  -1.388 0.170211    
+## Oviedo          -463.52    1863.34  -0.249 0.804384    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 5211 on 61 degrees of freedom
+## Multiple R-squared:  0.8683, Adjusted R-squared:  0.851 
+## F-statistic: 50.25 on 8 and 61 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{scatterplotMatrix}\NormalTok{(train[,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{CodingAssignment03_files/figure-latex/q3-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\FunctionTok{plot}\NormalTok{(original\_model)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{CodingAssignment03_files/figure-latex/q3-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#}
+\end{Highlighting}
+\end{Shaded}
+
+The first plot titled ``Residuals vs.~Fitted,'' shows a non-linear
+relationship, thus violates a classical assumption.
+
+The second plot titled ``Normal Q-Q'' would show a 45-degree line
+upwards. Since that is not the case here the assumption of a normally
+distributed dependent variable for a fixed set of predictors is
+violated.
+
+The third plot titled ``Scale-Location'' does not show some random
+points around a horizontal line rather has an upward slope indicating
+heteroscedasticity.
+
+Applying a transformation to the dependent variable Charges (e.g.,
+logarithmic, square root) would solve these issues.
+
+\subsection{Question 4}\label{question-4}
+
+Implement the solutions from question 3, such as data transformation,
+along with any other changes you wish. Use the sample data and run a new
+regression. How have the fit measures changed? How have the signs and
+significance of the coefficients changed?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#transform dataset {-} natural log \& squared}
+
+\CommentTok{\#Charges}
+\NormalTok{train}\SpecialCharTok{$}\NormalTok{lnCharges }\OtherTok{\textless{}{-}} \FunctionTok{log}\NormalTok{(train}\SpecialCharTok{$}\NormalTok{Charges)}
+\NormalTok{train}\SpecialCharTok{$}\NormalTok{ChargesSquared }\OtherTok{\textless{}{-}}\NormalTok{ train}\SpecialCharTok{$}\NormalTok{Charges}\SpecialCharTok{\^{}}\DecValTok{2}
+
+\CommentTok{\#BMI}
+\NormalTok{train}\SpecialCharTok{$}\NormalTok{lnBMI }\OtherTok{\textless{}{-}} \FunctionTok{log}\NormalTok{(train}\SpecialCharTok{$}\NormalTok{BMI)}
+\NormalTok{train}\SpecialCharTok{$}\NormalTok{BMISquared }\OtherTok{\textless{}{-}}\NormalTok{ train}\SpecialCharTok{$}\NormalTok{BMI}\SpecialCharTok{\^{}}\DecValTok{2}
+
+\CommentTok{\#Age}
+\NormalTok{train}\SpecialCharTok{$}\NormalTok{lnAge }\OtherTok{\textless{}{-}} \FunctionTok{log}\NormalTok{(train}\SpecialCharTok{$}\NormalTok{Age)}
+\NormalTok{train}\SpecialCharTok{$}\NormalTok{AgeSquared }\OtherTok{\textless{}{-}}\NormalTok{ train}\SpecialCharTok{$}\NormalTok{Age}\SpecialCharTok{\^{}}\DecValTok{2}
+
+\CommentTok{\#Plot Changes {-} Before and After}
+\CommentTok{\#Charges}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{))}
+\FunctionTok{hist}\NormalTok{(train}\SpecialCharTok{$}\NormalTok{Charges) }\CommentTok{\#before}
+\FunctionTok{hist}\NormalTok{(train}\SpecialCharTok{$}\NormalTok{lnCharges) }\CommentTok{\#after ln}
+\FunctionTok{hist}\NormalTok{(train}\SpecialCharTok{$}\NormalTok{ChargesSquared) }\CommentTok{\#after squared}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{CodingAssignment03_files/figure-latex/q4-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#BMI}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{))}
+\FunctionTok{hist}\NormalTok{(train}\SpecialCharTok{$}\NormalTok{BMI) }\CommentTok{\#before}
+\FunctionTok{hist}\NormalTok{(train}\SpecialCharTok{$}\NormalTok{lnBMI) }\CommentTok{\#after ln}
+\FunctionTok{hist}\NormalTok{(train}\SpecialCharTok{$}\NormalTok{BMISquared) }\CommentTok{\#after squared}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{CodingAssignment03_files/figure-latex/q4-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Age}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{))}
+\FunctionTok{hist}\NormalTok{(train}\SpecialCharTok{$}\NormalTok{Age) }\CommentTok{\#before}
+\FunctionTok{hist}\NormalTok{(train}\SpecialCharTok{$}\NormalTok{lnAge) }\CommentTok{\#after ln}
+\FunctionTok{hist}\NormalTok{(train}\SpecialCharTok{$}\NormalTok{AgeSquared) }\CommentTok{\#after squared}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{CodingAssignment03_files/figure-latex/q4-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{scatterplotMatrix}\NormalTok{(train[,}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{)]) }\CommentTok{\# grabbing original}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{CodingAssignment03_files/figure-latex/q4-4.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{scatterplotMatrix}\NormalTok{(train[,}\FunctionTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{,}\DecValTok{11}\NormalTok{,}\DecValTok{14}\NormalTok{)]) }\CommentTok{\# grabbing ln}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{CodingAssignment03_files/figure-latex/q4-5.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model\_log }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(lnCharges }\SpecialCharTok{\textasciitilde{}}\NormalTok{., }\AttributeTok{data =}\NormalTok{ train[,}\FunctionTok{c}\NormalTok{(}\DecValTok{4}\SpecialCharTok{:}\DecValTok{9}\NormalTok{,}\DecValTok{10}\NormalTok{,}\DecValTok{12}\NormalTok{,}\DecValTok{14}\NormalTok{)]) }\CommentTok{\#pulling only columns I want}
+\FunctionTok{summary}\NormalTok{(model\_log)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = lnCharges ~ ., data = train[, c(4:9, 10, 12, 14)])
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.77844 -0.19242  0.00994  0.16611  0.99283 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)    1.71480    0.92123   1.861  0.06750 .  
+## Female         0.04318    0.09502   0.454  0.65116    
+## Children       0.01159    0.04091   0.283  0.77800    
+## Smoker         1.87135    0.10683  17.517  < 2e-16 ***
+## WinterSprings -0.20177    0.13666  -1.476  0.14496    
+## WinterPark    -0.28464    0.13398  -2.124  0.03769 *  
+## Oviedo        -0.05841    0.13834  -0.422  0.67437    
+## lnBMI          0.69629    0.25244   2.758  0.00766 ** 
+## lnAge          1.29917    0.12520  10.377 4.25e-15 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.3871 on 61 degrees of freedom
+## Multiple R-squared:  0.8723, Adjusted R-squared:  0.8556 
+## F-statistic: 52.08 on 8 and 61 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model\_quad }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(ChargesSquared }\SpecialCharTok{\textasciitilde{}}\NormalTok{., }\AttributeTok{data =}\NormalTok{ train[,}\FunctionTok{c}\NormalTok{(}\DecValTok{4}\SpecialCharTok{:}\DecValTok{9}\NormalTok{,}\DecValTok{11}\NormalTok{,}\DecValTok{13}\NormalTok{,}\DecValTok{15}\NormalTok{)]) }\CommentTok{\#pulling only columns I want}
+\FunctionTok{summary}\NormalTok{(model\_quad)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = ChargesSquared ~ ., data = train[, c(4:9, 11, 13, 
+##     15)])
+## 
+## Residuals:
+##        Min         1Q     Median         3Q        Max 
+## -707477282  -99830541   29356429  129227409  777483645 
+## 
+## Coefficients:
+##                 Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)   -449932897  134502730  -3.345 0.001411 ** 
+## Female         -59361170   76250964  -0.778 0.439285    
+## Children       -15495976   31652363  -0.490 0.626196    
+## Smoker        1146420991   85873774  13.350  < 2e-16 ***
+## WinterSprings   79665798  109295957   0.729 0.468852    
+## WinterPark     -60517937  107723798  -0.562 0.576319    
+## Oviedo          13607162  110572320   0.123 0.902463    
+## BMISquared        392716      99374   3.952 0.000204 ***
+## AgeSquared        100138      35638   2.810 0.006652 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 309300000 on 61 degrees of freedom
+## Multiple R-squared:  0.7786, Adjusted R-squared:  0.7495 
+## F-statistic: 26.81 on 8 and 61 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\FunctionTok{plot}\NormalTok{(model\_log)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{CodingAssignment03_files/figure-latex/q4-6.pdf}
+Comparison of 3 models original\_model (untransfomed), model\_log
+(log-transformed), and model\_quad (squared) revealed that:
+
+The first model \emph{original\_model} showed moderate fit (0.851) and a
+higher Residual Standard Error (5211) compared to the second model. With
+this model coefficients Age, BMI and Smoker test significant and show a
+direct relationship with the dependent variable. Other independent
+variables in the dataset did not test significant and show an inverse
+relationship with the dependent variable.
+
+The second model \emph{model\_log} provided the best fit, with the
+highest Adjusted R-squared (0.856) and the lowest Residual Standard
+Error (0.387). With this model coefficients Smoker, lnAge and lnBMI
+(although reduced) continue to test significant, additionally WinterPark
+test significant. Signs of the independent variables Female and Children
+have flipped while others have remained unchanged.
+
+Third model \emph{model\_quad} shows non-linear relationships for BMI
+and Age, its weaker Adjusted R-squared (0.749) and high Residual
+Standard Error (309000000) indicated poor overall performance. With this
+model coefficients Smoker, BMISquared,and AgeSquared (although reduced)
+continues to test significant. Signs of the independent variables
+WinterSprings and Oviedo have flipped while others have remained
+unchanged.
+
+Overall the second model \emph{model\_log} stood out as the most
+accurate.
+
+\subsection{Question 5}\label{question-5}
+
+Use the 30 withheld observations and calculate the performance measures
+for your best two models. Which is the better model? (remember that
+``better'' depends on whether your outlook is short or long run)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{test}\SpecialCharTok{$}\NormalTok{lnCharges }\OtherTok{\textless{}{-}} \FunctionTok{log}\NormalTok{(test}\SpecialCharTok{$}\NormalTok{Charges)}
+\NormalTok{test}\SpecialCharTok{$}\NormalTok{lnBMI }\OtherTok{\textless{}{-}} \FunctionTok{log}\NormalTok{(test}\SpecialCharTok{$}\NormalTok{BMI)}
+\NormalTok{test}\SpecialCharTok{$}\NormalTok{lnAge }\OtherTok{\textless{}{-}} \FunctionTok{log}\NormalTok{(test}\SpecialCharTok{$}\NormalTok{Age)}
+
+\NormalTok{test}\SpecialCharTok{$}\NormalTok{original\_model\_pred }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(original\_model, }\AttributeTok{newdata =}\NormalTok{ test)}
+\NormalTok{test}\SpecialCharTok{$}\NormalTok{model\_log\_pred }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(model\_log,}\AttributeTok{newdata =}\NormalTok{ test) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{exp}\NormalTok{()}
+\CommentTok{\#test$model\_quad\_pred \textless{}{-} predict(model\_quad,newdata = test) \%\textgreater{}\% exp()}
+
+\CommentTok{\# Finding the error}
+\NormalTok{test}\SpecialCharTok{$}\NormalTok{error\_om }\OtherTok{\textless{}{-}}\NormalTok{ test}\SpecialCharTok{$}\NormalTok{original\_model\_pred }\SpecialCharTok{{-}}\NormalTok{ test}\SpecialCharTok{$}\NormalTok{Charges}
+\NormalTok{test}\SpecialCharTok{$}\NormalTok{error\_log }\OtherTok{\textless{}{-}}\NormalTok{ test}\SpecialCharTok{$}\NormalTok{model\_log\_pred }\SpecialCharTok{{-}}\NormalTok{ test}\SpecialCharTok{$}\NormalTok{Charges}
+\CommentTok{\#test$error\_quad \textless{}{-} test$model\_quad\_pred {-} test$Charges}
+\CommentTok{\#}
+
+\CommentTok{\#Bias}
+\FunctionTok{mean}\NormalTok{(test}\SpecialCharTok{$}\NormalTok{error\_om)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -1261.521
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(test}\SpecialCharTok{$}\NormalTok{error\_log)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 275.5506
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#MAE}
+\NormalTok{mae }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(error\_vector)\{}
+\NormalTok{error\_vector }\SpecialCharTok{\%\textgreater{}\%}
+\FunctionTok{abs}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+\FunctionTok{mean}\NormalTok{()}
+\NormalTok{\}}
+
+\FunctionTok{mae}\NormalTok{(test}\SpecialCharTok{$}\NormalTok{error\_om)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2910.693
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mae}\NormalTok{(test}\SpecialCharTok{$}\NormalTok{error\_log)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3766.402
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#RMSE}
+\NormalTok{rmse }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(error\_vector)\{}
+\NormalTok{error\_vector}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{\%\textgreater{}\%}
+\FunctionTok{mean}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+\FunctionTok{sqrt}\NormalTok{()}
+\NormalTok{\}}
+
+\FunctionTok{rmse}\NormalTok{(test}\SpecialCharTok{$}\NormalTok{error\_om)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3942.076
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{rmse}\NormalTok{(test}\SpecialCharTok{$}\NormalTok{error\_log)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 7267.676
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#MAPE}
+\NormalTok{mape }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(error\_vector, actual\_vector)\{}
+\NormalTok{(error\_vector}\SpecialCharTok{/}\NormalTok{actual\_vector) }\SpecialCharTok{\%\textgreater{}\%}
+\FunctionTok{abs}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+\FunctionTok{mean}\NormalTok{()}
+\NormalTok{\}}
+
+\FunctionTok{mape}\NormalTok{(test}\SpecialCharTok{$}\NormalTok{error\_om, test}\SpecialCharTok{$}\NormalTok{Charges)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.4644949
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mape}\NormalTok{(test}\SpecialCharTok{$}\NormalTok{error\_log, test}\SpecialCharTok{$}\NormalTok{Charges)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.2444027
+\end{verbatim}
+
+The Original Model is better for short-term prediction because it has a
+smaller bias, lower MAE, and lower RMSE, suggesting it will provide more
+accurate and reliable predictions for individual or immediate use.
+
+The Log Model is better for long-term prediction due to its
+significantly lower MAPE. This suggests it will likely provide more
+accurate predictions relative to the actual values in terms of
+percentage error, which is important for long-term forecasts.
+
+\subsection{Question 6}\label{question-6}
+
+Provide interpretations of the coefficients, do the signs make sense?
+Perform marginal change analysis (thing 2) on the independent variables.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model\_log}\SpecialCharTok{$}\NormalTok{coefficients[}\StringTok{"Female"}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     Female 
+## 0.04317663
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model\_log}\SpecialCharTok{$}\NormalTok{coefficients[}\StringTok{"Children"}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Children 
+## 0.01158525
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model\_log}\SpecialCharTok{$}\NormalTok{coefficients[}\StringTok{"Smoker"}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Smoker 
+## 1.871352
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model\_log}\SpecialCharTok{$}\NormalTok{coefficients[}\StringTok{"WinterSprings"}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## WinterSprings 
+##     -0.201772
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model\_log}\SpecialCharTok{$}\NormalTok{coefficients[}\StringTok{"WinterPark"}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## WinterPark 
+## -0.2846438
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model\_log}\SpecialCharTok{$}\NormalTok{coefficients[}\StringTok{"Oviedo"}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      Oviedo 
+## -0.05840776
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model\_log}\SpecialCharTok{$}\NormalTok{coefficients[}\StringTok{"lnBMI"}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     lnBMI 
+## 0.6962885
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model\_log}\SpecialCharTok{$}\NormalTok{coefficients[}\StringTok{"lnAge"}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    lnAge 
+## 1.299173
+\end{verbatim}
+
+\subsection{Question 7}\label{question-7}
+
+An eager insurance representative comes back with five potential
+clients. Using the better of the two models selected above, provide the
+prediction intervals for the five potential clients using the
+information provided by the insurance rep.
+
+\begin{longtable}[]{@{}lllllll@{}}
+\toprule\noalign{}
+Customer & Age & BMI & Female & Children & Smoker & City \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1 & 60 & 22 & 1 & 0 & 0 & Oviedo \\
+2 & 40 & 30 & 0 & 1 & 0 & Sanford \\
+3 & 25 & 25 & 0 & 0 & 1 & Winter Park \\
+4 & 33 & 35 & 1 & 2 & 0 & Winter Springs \\
+5 & 45 & 27 & 1 & 3 & 0 & Oviedo \\
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{new\_clients }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Age =} \FunctionTok{c}\NormalTok{(}\DecValTok{60}\NormalTok{, }\DecValTok{40}\NormalTok{, }\DecValTok{25}\NormalTok{, }\DecValTok{33}\NormalTok{, }\DecValTok{45}\NormalTok{),}
+  \AttributeTok{BMI =} \FunctionTok{c}\NormalTok{(}\DecValTok{22}\NormalTok{, }\DecValTok{30}\NormalTok{, }\DecValTok{25}\NormalTok{, }\DecValTok{35}\NormalTok{, }\DecValTok{27}\NormalTok{),}
+  \AttributeTok{Female =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{),}
+  \AttributeTok{Children =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{),}
+  \AttributeTok{Smoker =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+  \AttributeTok{WinterSprings =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+  \AttributeTok{WinterPark =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+  \AttributeTok{Oviedo =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{),}
+  \AttributeTok{lnBMI =} \FunctionTok{log}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{22}\NormalTok{, }\DecValTok{30}\NormalTok{, }\DecValTok{25}\NormalTok{, }\DecValTok{35}\NormalTok{, }\DecValTok{27}\NormalTok{)),}
+  \AttributeTok{lnAge =} \FunctionTok{log}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{60}\NormalTok{, }\DecValTok{40}\NormalTok{, }\DecValTok{25}\NormalTok{, }\DecValTok{33}\NormalTok{, }\DecValTok{45}\NormalTok{)))}
+  
+\NormalTok{  predictions }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(}
+\NormalTok{  model\_log,}
+  \AttributeTok{newdata =}\NormalTok{ new\_clients,}
+  \AttributeTok{interval =} \StringTok{"prediction"}
+\NormalTok{  )}
+  
+\FunctionTok{print}\NormalTok{(predictions)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        fit      lwr       upr
+## 1 9.171082 8.321615 10.020550
+## 2 8.887087 8.085595  9.688578
+## 3 9.724645 8.897025 10.552265
+## 4 8.597485 7.780221  9.414750
+## 5 8.974685 8.143279  9.806091
+\end{verbatim}
+
+\subsection{Question 8}\label{question-8}
+
+The owner notices that some of the predictions are wider than others,
+explain why.
+
+\subsection{Question 9}\label{question-9}
+
+Are there any prediction problems that occur with the five potential
+clients? If so, explain.
+
+\end{document}
