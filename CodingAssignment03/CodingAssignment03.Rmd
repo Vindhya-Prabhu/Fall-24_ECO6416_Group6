@@ -55,7 +55,7 @@ train <- Claims[-index,]
 test <- Claims[index,]
 
 quant_train <- train %>%
-  select(Charges, Age, BMI)
+  select(Charges, Age, BMI, Children)
 
 quant_train %>%
 tbl_summary(statistic = list(all_continuous() ~ c("{mean} ({sd})",
@@ -78,7 +78,7 @@ corrplot(cor(quant_train))
 
 ```
 
-The correlation analysis shows weak positive relationships between **Charges** and **Age 0.169** and **Charges** and **BMI 0.261**, while **Age** and **BMI** have almost no correlation **0.055**. These low values suggest minimal linear relationships between the variables.
+The correlation matrix shows weak positive relationships between **Charges** and both **Age 0.17** and **BMI 0.26**, while **Charges** has no meaningful correlation with **Children -0.002**. Among the predictors, correlations are generally negligible, with the strongest being between **Age** and **Children 0.23**. There is no indication of strong multicollinearity.
 
 *****
 
@@ -128,6 +128,7 @@ train$BMISquared <- train$BMI^2
 train$lnAge <- log(train$Age)
 train$AgeSquared <- train$Age^2
 
+
 #Plot Changes - Before and After
 #Charges
 par(mfrow=c(1,3))
@@ -147,7 +148,8 @@ hist(train$Age) #before
 hist(train$lnAge) #after ln
 hist(train$AgeSquared) #after squared
 
-scatterplotMatrix(train[,c(1,2,3)]) # grabbing original
+
+scatterplotMatrix(train[,c(1,2,3,5)]) # grabbing original
 scatterplotMatrix(train[,c(10,12,14)]) # grabbing ln
 scatterplotMatrix(train[,c(11,13,15)]) # grabbing squared
 
